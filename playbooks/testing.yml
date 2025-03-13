@@ -1,0 +1,11 @@
+---
+- name: Testing Playbook
+  hosts: localhost
+  become: false
+  vars:
+    plain: "SuperSecret"
+
+  tasks:
+    - name: determine password hash
+      ansible.builtin.debug:
+        msg: "{{ plain | password_hash(hashtype='sha512', salt='something') }}"
